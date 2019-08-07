@@ -2,36 +2,69 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { withFormik } from "formik";
 import * as Yup from "yup";
+import styled from "styled-components";
+
+import Input from "../../components/input";
+import Button from "../../components/button";
+
+const StyledContainer = styled.div`
+  width: 30%;
+  height: 70%;
+  padding: 50px;
+  margin: 0 auto;
+  background-color: #3d3d3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledForm = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledTitle = styled.p`
+  color: white;
+`;
+
+const StyledLink = styled(Link)`
+  color: #448e9d;
+`;
 
 const SignUp = ({ values, handleSubmit, handleChange, errors }) => (
-  <form onSubmit={handleSubmit}>
-    <input
-      type="email"
-      name="email"
-      onChange={handleChange}
-      value={values.email}
-      placeholder="Email"
-    />
-    <p>{errors.email && errors.email}</p>
-    <input
-      type="password"
-      name="password"
-      onChange={handleChange}
-      value={values.password}
-      placeholder="Password"
-    />
-    <p>{errors.password && errors.password}</p>
-    <input
-      type="password"
-      name="repeatpassword"
-      onChange={handleChange}
-      value={values.repeatpassword}
-      placeholder="Repeat password"
-    />
-    <p>{errors.repeatpassword && errors.repeatpassword}</p>
-    <input type="submit" value="Sign Up" />
-    <Link to="/signin">sign in</Link>
-  </form>
+  <StyledContainer>
+    <StyledTitle>Sign In To-Do</StyledTitle>
+    <StyledForm onSubmit={handleSubmit}>
+      <Input
+        type="email"
+        name="email"
+        text="Email"
+        onChange={handleChange}
+        value={values.email}
+        error={errors.email && errors.email}
+      />
+      <Input
+        type="password"
+        name="password"
+        text="Password"
+        onChange={handleChange}
+        value={values.password}
+        error={errors.password && errors.password}
+      />
+      <Input
+        type="password"
+        name="repeatpassword"
+        text="Repeat password"
+        onChange={handleChange}
+        value={values.repeatpassword}
+        error={errors.repeatpassword && errors.repeatpassword}
+      />
+      <Button type="submit" text="Sign Up" margin="10px 0" padding="10px 0" />
+    </StyledForm>
+    <StyledLink to="/signin">sign in</StyledLink>
+  </StyledContainer>
 );
 
 const validationSchema = Yup.object().shape({

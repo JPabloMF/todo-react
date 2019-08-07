@@ -1,29 +1,62 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { withFormik } from "formik";
 import * as Yup from "yup";
+import styled from "styled-components";
+
+import Input from "../../components/input";
+import Button from "../../components/button";
+
+const StyledContainer = styled.div`
+  width: 30%;
+  height: 70%;
+  padding: 50px;
+  margin: 0 auto;
+  background-color: #3d3d3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledForm = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledTitle = styled.p`
+  color: white;
+`;
+
+const StyledLink = styled(Link)`
+  color: #448e9d;
+`;
 
 const SignIn = ({ values, handleChange, handleSubmit, errors }) => (
-  <form onSubmit={handleSubmit}>
-    <input
-      type="email"
-      onChange={handleChange}
-      name="email"
-      value={values.email}
-      placeholder="Email"
-    />
-    <p>{errors.email && errors.email}</p>
-    <input
-      type="password"
-      onChange={handleChange}
-      name="password"
-      value={values.password}
-      placeholder="Password"
-    />
-    <p>{errors.password && errors.password}</p>
-    <input type="submit" value="Sign Up" />
-    <Link to="/signup">sign up</Link>
-  </form>
+  <StyledContainer>
+    <StyledTitle>Sign In To-Do</StyledTitle>
+    <StyledForm onSubmit={handleSubmit}>
+      <Input
+        type="email"
+        name="email"
+        text="Email"
+        onChange={handleChange}
+        value={values.email}
+        error={errors.email && errors.email}
+      />
+      <Input
+        type="password"
+        name="password"
+        text="Password"
+        onChange={handleChange}
+        value={values.password}
+        error={errors.password && errors.password}
+      />
+      <Button type="submit" text="Sign Up" margin="10px 0" padding="10px 0"  />
+    </StyledForm>
+    <StyledLink to="/signup">sign up</StyledLink>
+  </StyledContainer>
 );
 
 const validationSchema = Yup.object().shape({
