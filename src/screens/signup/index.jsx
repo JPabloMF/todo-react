@@ -61,7 +61,7 @@ const SignUp = ({ values, handleSubmit, handleChange, errors }) => (
         value={values.repeatpassword}
         error={errors.repeatpassword && errors.repeatpassword}
       />
-      <Button type="submit" text="Sign Up" margin="10px 0" padding="10px 0" />
+      <Button type="submit" text="Sign In" margin="10px 0" padding="10px 0" />
     </StyledForm>
     <StyledLink to="/signin">sign in</StyledLink>
   </StyledContainer>
