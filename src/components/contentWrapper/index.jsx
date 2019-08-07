@@ -7,7 +7,7 @@ import ToDo from "../../screens/dashboard/toDo";
 
 const StyledRouter = styled.div`
   margin-left: 250px;
-  margin-top: 100px;
+  margin-top: 70px;
   width: calc(100% - 250px);
 `;
 
