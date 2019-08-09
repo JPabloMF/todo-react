@@ -15,7 +15,7 @@ const ContentWrapper = () => {
   return (
     <StyledRouter>
       <Switch>
-        <Route exact path="/dashboard" component={Home} />
+        <Route exact path="/" component={ToDo} />
         <Route path="/dashboard/home" component={Home} />
         <Route path="/dashboard/todo" component={ToDo} />
       </Switch>
