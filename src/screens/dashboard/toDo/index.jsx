@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import {connect} from 'react-redux';
 
 import Card from "../../../components/card";
 
 import { titles } from "./config";
+
+import { fetchTodoRequest } from "../../../store/todo/actions";
+import store from '../../../store';
 
 const StyledToDoContainer = styled.div`
   width: 100%;
@@ -12,25 +16,16 @@ const StyledToDoContainer = styled.div`
   justify-content: space-around;
 `;
 
-const ToDo = () => {
+const ToDo = ({ todos }) => {
   const [todo, setTodo] = useState([]);
 
   useEffect(() => {
-    const abortController = new AbortController();
-    fetch("https://jsonplaceholder.typicode.com/todos", {
-      signal: abortController.signal
-    })
-      .then(response => response.json())
-      .then(json => setTodo(json))
-      .catch(err => {
-        if (err.name === "AbortError") return;
-        throw err;
-      });
-
-    return () => {
-      abortController.abort();
-    };
+    store.dispatch(fetchTodoRequest());
   }, []);
+
+  useEffect(() => {
+    todos && todos.data && setTodo(todos.data);
+  }, [todos]);
 
   return (
     <StyledToDoContainer>
@@ -47,4 +42,6 @@ const ToDo = () => {
   );
 };
 
-export default ToDo;
+const mapStateToProps = state => ({ todos: state.todo.result });
+
+export default connect(mapStateToProps)(ToDo);

@@ -1,8 +1,7 @@
 import { TODO } from "../actionTypes";
 
-export const fetchTodoRequest = data => ({
-  type: TODO.REQUEST,
-  data
+export const fetchTodoRequest = () => ({
+  type: TODO.REQUEST
 });
 
 export const fetchTodoSuccess = data => ({
